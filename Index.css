@@ -1,0 +1,122 @@
+:root{
+  --bg: #0b1020;
+  --bg2: #0f1731;
+  --card: rgba(255,255,255,.06);
+  --stroke: rgba(255,255,255,.12);
+  --text: #e9eefc;
+  --muted: #a7b1d6;
+  --primary: #6c9cff;
+  --accent: #5cf2d6;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color: var(--text);
+  background:
+    radial-gradient(60vw 60vw at -10% -10%, #142047 0%, transparent 60%),
+    radial-gradient(50vw 50vw at 110% 10%, #1a234a 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg2));
+  background-attachment: fixed;
+  line-height: 1.6;
+}
+
+/* Container & utilities */
+.container{width:min(1100px, 92%); margin-inline:auto}
+.section{padding:90px 0}
+.section-title{
+  font-size: clamp(24px, 3vw, 34px);
+  margin:0 0 24px;
+}
+.muted{color:var(--muted)}
+.mb-8{margin-bottom:8px}
+.small{font-size:.9rem}
+a{color:var(--accent); text-decoration:none}
+a:hover{opacity:.9}
+
+/* Navbar */
+.nav{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter: blur(10px);
+  background: rgba(10,14,30,.45);
+  border-bottom:1px solid var(--stroke);
+  display:flex; align-items:center; gap:18px;
+  padding:10px min(32px,4vw);
+}
+.brand{font-weight:700; letter-spacing:.5px; color:#fff}
+.nav-menu{margin-left:auto; display:flex; gap:22px}
+.nav-menu a{color:#dfe6ff}
+.nav-toggle{display:none; margin-left:auto; background:none; border:0; cursor:pointer}
+.nav-toggle span{display:block; width:24px; height:2px; background:#fff; margin:5px 0}
+
+/* Hero */
+.hero{
+  padding:120px 0 80px;
+  display:grid; grid-template-columns:1.2fr .8fr; gap:40px;
+  align-items:center;
+}
+.hero h1{font-size: clamp(28px, 4.2vw, 44px); margin:0 0 10px}
+.hero h1 span{color:var(--primary)}
+.hero .cta{display:flex; gap:12px; margin-top:18px}
+.btn{
+  padding:12px 18px; border-radius:12px; border:1px solid var(--stroke);
+  color:#fff; display:inline-block; transition:.25s;
+}
+.btn.primary{background:linear-gradient(135deg, var(--primary), #4a73ff)}
+.btn.ghost{background:transparent}
+.btn:hover{transform:translateY(-2px)}
+
+.social{display:flex; gap:14px; margin-top:16px}
+.social a{color:#cfe3ff; font-size:22px}
+
+.avatar{
+  width:260px; height:260px; object-fit:cover; border-radius:50%;
+  border: 4px solid rgba(255,255,255,.25);
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  display:block; margin-inline:auto;
+}
+
+/* Cards & grids */
+.card{
+  background: var(--card);
+  border:1px solid var(--stroke);
+  border-radius:16px; padding:22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25) inset;
+}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+.grid-3{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+.badges{list-style:none; padding:0; margin:14px 0 0; display:flex; gap:10px; flex-wrap:wrap}
+.badges li{background:rgba(255,255,255,.08); border:1px solid var(--stroke); border-radius:999px; padding:6px 12px}
+
+/* Skills bar */
+.bar{height:10px; border-radius:999px; background:rgba(255,255,255,.09); border:1px solid var(--stroke); overflow:hidden}
+.bar span{display:block; height:100%; width:var(--w); background:linear-gradient(90deg, var(--accent), #3ce3ff); box-shadow:0 0 18px #3ce3ff44 inset; transform-origin:left; animation:grow 1.2s ease forwards}
+@keyframes grow{from{transform:scaleX(.2)} to{transform:scaleX(1)}}
+
+/* Timeline */
+.timeline{position:relative; margin-left:14px}
+.timeline:before{content:""; position:absolute; left:0; top:6px; bottom:6px; width:2px; background:var(--stroke)}
+.tl-item{position:relative; padding-left:24px; margin:18px 0}
+.tl-dot{position:absolute; left:-5px; top:10px; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px #5cf2d699}
+
+/* Lists */
+.list{list-style:none; padding:0; margin:0}
+.list li{margin:6px 0}
+
+/* Footer */
+.footer{border-top:1px solid var(--stroke); padding:30px 0; text-align:center; color:var(--muted); background:rgba(0,0,0,.2)}
+
+/* Reveal on scroll */
+.reveal{opacity:0; transform:translateY(18px); transition:.6s ease}
+.reveal.show{opacity:1; transform:none}
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero{grid-template-columns:1fr; text-align:center}
+  .nav-toggle{display:block}
+  .nav-menu{position:fixed; inset:60px 12px auto 12px; padding:12px; background:rgba(14,20,40,.9); border:1px solid var(--stroke); border-radius:14px; flex-direction:column; display:none}
+  .nav-menu.open{display:flex}
+  .grid-2{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr}
+}
